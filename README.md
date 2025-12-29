@@ -10,7 +10,7 @@ To install it, you must load it manually using Chrome's Developer Mode.
 ### 1. Download the extension
 - Download this repository as a **ZIP file**
 - Extract the ZIP file anywhere on your computer
-- Only the WEB_extension file is required, you can delete server.json and README.md
+- Only the **WEB_extension** file is required, you can delete **server.json** and **README.md**
 
 ---
 
