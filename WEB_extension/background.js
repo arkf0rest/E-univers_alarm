@@ -1,6 +1,6 @@
 let isReady = true;
 
-// Créer l'alarme pour check toutes les 60s
+// Créer l'alarme pour check toutes les 30s
 chrome.runtime.onInstalled.addListener(() => {
   chrome.alarms.create("check_api", { periodInMinutes: 0.5 });
 });
@@ -112,4 +112,5 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
     isReady = true; // réarmement
   }
 });
+
 
