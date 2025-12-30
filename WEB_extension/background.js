@@ -2,11 +2,11 @@ let isReady = true;
 
 // Créer l'alarme pour check toutes les 60s
 chrome.runtime.onInstalled.addListener(() => {
-  chrome.alarms.create("check_api", { periodInMinutes: 0.1667 });
+  chrome.alarms.create("check_api", { periodInMinutes: 0.5 });
 });
 
 chrome.runtime.onStartup.addListener(() => {
-  chrome.alarms.create("check_api", { periodInMinutes: 0.1667 });
+  chrome.alarms.create("check_api", { periodInMinutes: 0.5 });
 });
 
 // Récupération de l'URL du serveur
@@ -112,3 +112,4 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
     isReady = true; // réarmement
   }
 });
+
