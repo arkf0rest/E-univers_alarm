@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "E-univers alarm",
+  "version": "2.2",
+  "description": "Notifie l'utilisateur via Discord s'il se fait attaquer.",
+  
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+
+  "permissions": ["storage", "tabs", "alarms", "offscreen"],
+
+  "host_permissions": [
+    "https://e-univers.fr/*",
+    "http://localhost:5000/*",
+    "https://protanopic-tawnya-brazenly.ngrok-free.dev/*"
+  ],
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "web_accessible_resources": [
+    {
+      "resources": ["sound.mp3"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
