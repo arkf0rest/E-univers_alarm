@@ -1,0 +1,396 @@
+:root {
+  --bg: #0f172a;
+  --card: #1e293b;
+  --on: #22c55e;
+  --off: #334155;
+  --accent: #6366f1;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Inter, Arial, sans-serif;
+  width: 280px;
+  margin: 0;
+  padding: 14px;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+h2 {
+  margin: 0 0 6px;
+  font-size: 18px;
+}
+
+/* ================= CARDS ================= */
+
+.card {
+  background: var(--card);
+  padding: 12px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 8px 20px rgba(0,0,0,.25);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0,0,0,.35);
+}
+
+.card.column {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.label {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* ================= INPUT ================= */
+
+input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  margin-top: 6px;
+  background: #020617;
+  color: var(--text);
+  outline: none;
+}
+
+/* ================= BUTTON ================= */
+
+#save {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, var(--accent), #4f46e5);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#save:hover {
+  box-shadow: 0 8px 20px rgba(99,102,241,.4);
+}
+
+#save:active {
+  transform: scale(0.96);
+}
+
+/* ================= STATUS ================= */
+
+#status {
+  opacity: 0;
+  text-align: center;
+  transform: translateY(-4px);
+  transition: opacity .25s ease, transform .25s ease;
+}
+
+#status:not(:empty) {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ================= TOGGLE ================= */
+
+#checkboxInput {
+  display: none;
+}
+
+.toggleSwitch {
+  width: 44px;
+  height: 44px;
+  background-color: var(--off);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color .3s cubic-bezier(.34,1.56,.64,1),
+              transform .15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.toggleSwitch:active {
+  transform: scale(0.92);
+}
+
+#checkboxInput:checked + .toggleSwitch {
+  background-color: var(--on);
+}
+
+/* ================= ICONS ================= */
+
+.speaker,
+.mute-speaker {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity .25s ease;
+}
+
+.speaker,
+.mute-speaker {
+  transition: opacity .2s ease-in-out;
+}
+
+#checkboxInput:checked + .toggleSwitch .speaker {
+  opacity: 1;
+}
+
+#checkboxInput:checked + .toggleSwitch .mute-speaker {
+  opacity: 0;
+}
+
+.speaker svg,
+.mute-speaker svg {
+  width: 18px;
+}
+
+/* ================= ANIMATION ================= */
+
+@keyframes popupIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.container {
+  animation: popupIn 0.35s cubic-bezier(.2,.8,.2,1);
+}
+
+
+input[type="text"]:focus {
+  box-shadow: 0 0 0 2px rgba(99,102,241,.35);
+}
+
+
+/* ================= SCAN CARD ================= */
+.scan-card {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  background: var(--card);
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.25);
+  transition: transform .18s ease, box-shadow .18s ease, background .2s ease;
+}
+
+.scan-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0,0,0,.35);
+  background: linear-gradient(135deg, var(--accent), #4f46e5);
+}
+
+.scan-card:active {
+  transform: scale(0.96);
+}
+
+/* Loader Uiverse intégré */
+.scan-card .loader {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background: transparent;
+  border-radius: 50%;
+  box-shadow: 12px 12px 35px rgba(0,0,0,0.55);
+  border: 1px solid #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.scan-card .loader::before {
+  content: '';
+  position: absolute;
+  inset: 10px;
+  background: transparent;
+  border: 1px dashed #444;
+  border-radius: 50%;
+  box-shadow: inset -3px -3px 15px rgba(0,0,0,0.25),
+              inset 3px 3px 25px rgba(0,0,0,0.25);
+}
+
+.scan-card .loader::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px dashed #444;
+  box-shadow: inset -3px -3px 15px rgba(0,0,0,0.25),
+              inset 3px 3px 25px rgba(0,0,0,0.25);
+}
+
+.scan-card .loader span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  background: transparent;
+  transform-origin: top left;
+  animation: radar81 2s linear infinite paused;
+  border-top: 2px dashed #fff;
+}
+
+.scan-card .loader span::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: seagreen;
+  transform-origin: top left;
+  transform: rotate(-55deg);
+  filter: blur(20px) drop-shadow(10px 10px 10px seagreen);
+}
+
+/* Animation radar */
+@keyframes radar81 {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Texte sous le radar */
+.scan-card .scan-text {
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Activer l'animation au clic */
+.scan-card.active .loader span {
+  animation-play-state: running;
+}
+
+/* ================= PROGRESS BAR ================= */
+#progressContainer {
+  display: none; /* par défaut masquée */
+  width: 100%;
+  height: 12px;
+  background: var(--off);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+
+#progressBar {
+  width: 0%;
+  height: 100%;
+  background: var(--on);
+  transition: width 0.2s ease;
+}
+
+#progressText {
+  font-size: 12px;
+  color: var(--text);
+  text-align: center;
+  margin-top: 4px;
+}
+
+/* ================= TOGGLES EXPLORATION & ATTAQUE ================= */
+
+/* Toggle explorations */
+#exploreMsg {
+  display: none;
+}
+
+#exploreMsg + .toggleSwitch {
+  background-color: var(--off);
+}
+
+#exploreMsg:checked + .toggleSwitch {
+  background-color: #3b82f6; /* bleu pour exploration */
+}
+
+#exploreMsg + .toggleSwitch .speaker {
+  opacity: 0.8;
+}
+
+#exploreMsg:checked + .toggleSwitch .speaker {
+  opacity: 1;
+}
+
+#exploreMsg + .toggleSwitch .mute-speaker {
+  opacity: 0.3;
+}
+
+#exploreMsg:checked + .toggleSwitch .mute-speaker {
+  opacity: 0;
+}
+
+/* Toggle attaques */
+#attackMsg {
+  display: none;
+}
+
+#attackMsg + .toggleSwitch {
+  background-color: var(--off);
+}
+
+#attackMsg:checked + .toggleSwitch {
+  background-color: #ef4444; /* rouge pour attaque */
+}
+
+#attackMsg + .toggleSwitch .speaker {
+  opacity: 0.8;
+}
+
+#attackMsg:checked + .toggleSwitch .speaker {
+  opacity: 1;
+}
+
+#attackMsg + .toggleSwitch .mute-speaker {
+  opacity: 0.3;
+}
+
+#attackMsg:checked + .toggleSwitch .mute-speaker {
+  opacity: 0;
+}
+
+/* Toggle audio smooth */
+.card.audio-smooth {
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  max-height: 80px; /* hauteur approximative du toggle */
+  opacity: 1;
+}
+
+.card.audio-smooth.hide {
+  max-height: 0;
+  opacity: 0;
+  padding: 0; /* pour que ça se rétracte complètement */
+}
